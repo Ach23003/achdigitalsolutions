@@ -314,7 +314,7 @@ main {
   #SIDEBAR
 \*-----------------------------------*/
 
-.sidebar {
+.sidebar { 
   margin-bottom: 15px;
   max-height: 112px; /* Hauteur par défaut */
   overflow: hidden; /* Cache le contenu dépassant */
@@ -322,8 +322,8 @@ main {
 }
 
 .sidebar.active {
-  max-height: 80vh; /* Utilise 80% de la hauteur de l'écran pour permettre le défilement */
-  overflow-y: auto; /* Active le défilement vertical */
+  max-height: 80vh; /* Utilise 80% de la hauteur de l'écran */
+  overflow-y: auto;
 }
 
 .sidebar-info {
@@ -448,26 +448,36 @@ main {
 
 .social-item .social-link:hover { color: var(--light-gray); }
 
-/* Media Queries pour les écrans mobiles */
+/* Responsive pour mobile */
 @media (max-width: 768px) {
   .sidebar {
-    max-height: 80px; /* Hauteur réduite par défaut sur mobile */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: var(--bg-gradient-jet);
+    padding: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
   }
 
   .sidebar.active {
-    max-height: 80vh; /* Utilise 80% de la hauteur de l'écran pour permettre le défilement */
-    overflow-y: auto; /* Active le défilement vertical */
+    transform: translateX(0);
+    max-height: 100vh;
+    overflow-y: auto;
   }
 
   .sidebar-info {
-    flex-direction: column; /* Empiler les éléments verticalement */
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: 10px;
   }
 
   .info_more-btn {
-    top: -10px;
-    right: -10px;
+    top: 10px;
+    right: 10px;
     font-size: 12px;
     padding: 8px;
   }
@@ -477,18 +487,20 @@ main {
   }
 
   .contact-item {
-    flex-direction: column; /* Empiler les éléments de contact verticalement */
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
   }
 
   .contact-info {
     max-width: 100%;
     width: 100%;
+    text-align: center;
   }
 
   .social-list {
-    flex-wrap: wrap; /* Permettre aux éléments sociaux de passer à la ligne */
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
   }
 }
