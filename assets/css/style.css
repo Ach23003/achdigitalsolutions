@@ -316,12 +316,15 @@ main {
 
 .sidebar {
   margin-bottom: 15px;
-  max-height: 112px;
-  overflow: hidden;
+  max-height: 112px; /* Hauteur par défaut */
+  overflow: hidden; /* Cache le contenu dépassant */
   transition: var(--transition-2);
 }
 
-.sidebar.active { max-height: 405px; }
+.sidebar.active {
+  max-height: 80vh; /* Utilise 80% de la hauteur de l'écran pour permettre le défilement */
+  overflow-y: auto; /* Active le défilement vertical */
+}
 
 .sidebar-info {
   position: relative;
@@ -443,10 +446,52 @@ main {
   font-size: 18px;
 }
 
-
 .social-item .social-link:hover { color: var(--light-gray); }
 
+/* Media Queries pour les écrans mobiles */
+@media (max-width: 768px) {
+  .sidebar {
+    max-height: 80px; /* Hauteur réduite par défaut sur mobile */
+  }
 
+  .sidebar.active {
+    max-height: 80vh; /* Utilise 80% de la hauteur de l'écran pour permettre le défilement */
+    overflow-y: auto; /* Active le défilement vertical */
+  }
+
+  .sidebar-info {
+    flex-direction: column; /* Empiler les éléments verticalement */
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .info_more-btn {
+    top: -10px;
+    right: -10px;
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .contacts-list {
+    gap: 10px;
+  }
+
+  .contact-item {
+    flex-direction: column; /* Empiler les éléments de contact verticalement */
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .contact-info {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .social-list {
+    flex-wrap: wrap; /* Permettre aux éléments sociaux de passer à la ligne */
+    gap: 10px;
+  }
+}
 
 
 
