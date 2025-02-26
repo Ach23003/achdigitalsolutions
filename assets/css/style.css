@@ -316,14 +316,15 @@ main {
 
 .sidebar { 
   margin-bottom: 15px;
-  max-height: 112px; /* Hauteur par défaut */
-  overflow: hidden; /* Cache le contenu dépassant */
-  transition: var(--transition-2);
+  max-height: 112px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .sidebar.active {
-  max-height: 80vh; /* Utilise 80% de la hauteur de l'écran */
+  max-height: calc(100vh - 50px);
   overflow-y: auto;
+  transform: translateX(0);
 }
 
 .sidebar-info {
@@ -371,28 +372,15 @@ main {
   z-index: 1;
 }
 
-.info_more-btn::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  border-radius: inherit;
-  background: var(--bg-gradient-jet);
-  transition: var(--transition-1);
-  z-index: -1;
-}
-
 .info_more-btn:hover,
-.info_more-btn:focus { background: var(--bg-gradient-yellow-1); }
-
-.info_more-btn:hover::before,
-.info_more-btn:focus::before { background: var(--bg-gradient-yellow-2); }
-
-.info_more-btn span { display: none; }
+.info_more-btn:focus { 
+  background: var(--bg-gradient-yellow-1); 
+}
 
 .sidebar-info_more {
   opacity: 0;
   visibility: hidden;
-  transition: var(--transition-2);
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
 .sidebar.active .sidebar-info_more {
@@ -400,6 +388,7 @@ main {
   visibility: visible;
 }
 
+/* Contacts */
 .contacts-list {
   display: grid;
   grid-template-columns: 1fr;
@@ -407,15 +396,15 @@ main {
 }
 
 .contact-item {
-  min-width: 100%;
   display: flex;
   align-items: center;
   gap: 16px;
+  width: 100%;
 }
 
 .contact-info {
-  max-width: calc(100% - 46px);
-  width: calc(100% - 46px);
+  max-width: 100%;
+  text-align: left;
 }
 
 .contact-title {
@@ -430,15 +419,17 @@ main {
   font-size: var(--fs-7);
 }
 
-.contact-info address { font-style: normal; }
+.contact-info address { 
+  font-style: normal; 
+}
 
+/* Réseaux sociaux */
 .social-list {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 15px;
-  padding-bottom: 4px;
-  padding-left: 7px;
+  flex-wrap: wrap;
 }
 
 .social-item .social-link {
@@ -446,7 +437,9 @@ main {
   font-size: 18px;
 }
 
-.social-item .social-link:hover { color: var(--light-gray); }
+.social-item .social-link:hover { 
+  color: var(--light-gray); 
+}
 
 /* Responsive pour mobile */
 @media (max-width: 768px) {
@@ -460,6 +453,7 @@ main {
     padding: 20px;
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
+    z-index: 1000;
   }
 
   .sidebar.active {
@@ -500,12 +494,34 @@ main {
 
   .social-list {
     justify-content: center;
-    flex-wrap: wrap;
     gap: 10px;
   }
+
+  /* Ajout d'un bouton pour fermer la sidebar */
+  .sidebar-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: var(--white-2);
+    cursor: pointer;
+  }
+
+  /* Bouton menu burger */
+  .menu-burger {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: var(--bg-gradient-yellow-1);
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1100;
+  }
 }
-
-
 
 /*-----------------------------------*\
   #NAVBAR
