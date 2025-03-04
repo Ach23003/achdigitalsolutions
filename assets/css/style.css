@@ -1188,9 +1188,103 @@ main {
 }
 
 
+/*-----------------------------------*\
+  #CERTIFICATES
+\*-----------------------------------*/
 
+.certificates-posts {
+  margin-bottom: 10px;
+}
 
+.certificates-posts-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Deux colonnes de largeur égale */
+  gap: 20px; /* Espace entre les éléments */
+}
 
+.certificates-post-item > a {
+  position: relative;
+  background: var(--border-gradient-onyx);
+  height: 100%;
+  box-shadow: var(--shadow-4);
+  border-radius: 16px;
+  z-index: 1;
+  display: block; /* Assure que le lien est un bloc */
+}
+
+.certificates-post-item > a::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: var(--eerie-black-1);
+  z-index: -1;
+}
+
+.certificates-banner-box {
+  width: 100%;
+  height: 0;
+  padding-top: 75%; /* Ratio 4:3 (ajustez selon vos images) */
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.certificates-banner-box img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Affiche l'image entière sans la recadrer */
+  transition: var(--transition-1);
+}
+
+.certificates-post-item > a:hover .certificates-banner-box img {
+  transform: scale(1.1); /* Effet de zoom au survol */
+}
+
+.certificates-content {
+  padding: 15px;
+}
+
+.certificates-meta {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.certificates-meta :is(.certificates-category, time) {
+  color: var(--light-gray-70);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+}
+
+.certificates-meta .dot {
+  background: var(--light-gray-70);
+  width: 4px;
+  height: 4px;
+  border-radius: 4px;
+}
+
+.certificates-item-title {
+  margin-bottom: 10px;
+  line-height: 1.3;
+  transition: var(--transition-1);
+}
+
+.certificates-post-item > a:hover .certificates-item-title {
+  color: var(--orange-yellow-crayola); /* Changement de couleur au survol */
+}
+
+.certificates-text {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+  line-height: 1.6;
+}
 /*-----------------------------------*\
   #CONTACT
 \*-----------------------------------*/
@@ -1628,7 +1722,9 @@ textarea.form-input::-webkit-resizer { display: none; }
    * REUSED STYLE
    */
 
-  .sidebar, article { width: 700px; }
+  
+  
+ .sidebar, article { width: 700px; }
 
   .has-scrollbar::-webkit-scrollbar-button { width: 100px; }
 
@@ -1896,54 +1992,111 @@ textarea.form-input::-webkit-resizer { display: none; }
    * SIDEBAR
    */
 
+  /* Styles par défaut pour desktop */
+.sidebar {
+  position: sticky;
+  top: 60px;
+  max-height: max-content;
+  height: 100%;
+  margin-bottom: 0;
+  padding-top: 60px;
+  z-index: 1;
+}
+
+.sidebar-info {
+  flex-direction: column; /* Disposition verticale sur desktop */
+}
+
+.avatar-box img {
+  width: 150px;
+}
+
+.info-content .name {
+  white-space: nowrap;
+  text-align: center;
+}
+
+.info-content .title {
+  margin: auto;
+}
+
+.info_more-btn {
+  display: none;
+}
+
+.sidebar-info_more {
+  opacity: 1;
+  visibility: visible;
+}
+
+.contacts-list {
+  grid-template-columns: 1fr;
+}
+
+.contact-info :is(.contact-link) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact-info :is(.contact-link, time, address) {
+  --fs-7: 14px;
+  font-weight: var(--fw-300);
+}
+
+.separator:last-of-type {
+  margin: 15px 0;
+  opacity: 0;
+}
+
+.social-list {
+  justify-content: center;
+}
+
+/* Ajustements pour mobile */
+@media (max-width: 768px) {
   .sidebar {
-    position: sticky;
-    top: 60px;
-    max-height: max-content;
-    height: 100%;
-    margin-bottom: 0;
-    padding-top: 60px;
-    z-index: 1;
+    position: fixed;  /* Utilisation de position fixed */
+    bottom: 0;        /* Placer le sidebar en bas de l'écran */
+    left: 0;
+    right: 0;
+    top: auto;        /* Désactivation de la position sticky */
+    height: auto;     /* Hauteur auto pour s'adapter au contenu */
+    padding-top: 0;   /* Retirer le padding top */
+    z-index: 1000;    /* Assurer que le sidebar est au-dessus des autres éléments */
+    display: flex;
+    justify-content: center;
   }
 
-  .sidebar-info { flex-direction: column; }
+  .sidebar-info {
+    flex-direction: row; /* Disposition horizontale des éléments */
+    justify-content: space-evenly; /* Espacer les éléments uniformément */
+    width: 100%;         /* Prendre toute la largeur */
+  }
 
-  .avatar-box img { width: 150px; }
+  .avatar-box img {
+    width: 100px; /* Ajuster la taille de l'avatar pour mobile */
+  }
 
   .info-content .name {
-    white-space: nowrap;
     text-align: center;
+    font-size: 14px; /* Adapter la taille de la police */
   }
 
-  .info-content .title { margin: auto; }
-
-  .info_more-btn { display: none; }
-
-  .sidebar-info_more {
-    opacity: 1;
-    visibility: visible;
+  .info-content .title {
+    margin: 0; /* Ajuster la marge */
   }
 
-  .contacts-list { grid-template-columns: 1fr; }
-
-  .contact-info :is(.contact-link) {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .contacts-list {
+    display: flex;
+    justify-content: space-evenly; /* Espacer les contacts horizontalement */
+    flex-wrap: wrap; /* Permet aux éléments de passer sur plusieurs lignes si nécessaire */
   }
 
-  .contact-info :is(.contact-link, time, address) {
-    --fs-7: 14px;
-    font-weight: var(--fw-300);
+  .social-list {
+    justify-content: space-evenly; /* Espacer les icônes sociales uniformément */
   }
-
-  .separator:last-of-type {
-    margin: 15px 0;
-    opacity: 0;
-  }
-
-  .social-list { justify-content: center; }
-
+}
 
 
   /**
@@ -2024,4 +2177,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .ig-icon:hover {
   color: #f77737;
+}
+.article-title {
+  color:white;
 }
